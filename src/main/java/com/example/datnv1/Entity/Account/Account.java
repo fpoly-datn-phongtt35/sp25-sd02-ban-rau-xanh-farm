@@ -1,5 +1,6 @@
-package com.example.datnv1.Entity;
+package com.example.datnv1.Entity.Account;
 
+import com.example.datnv1.Entity.BaseEntity;
 import com.example.datnv1.Enum.AccountType;
 import jakarta.persistence.*;
 import lombok.*;
