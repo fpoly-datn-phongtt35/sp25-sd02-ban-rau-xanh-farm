@@ -1,6 +1,7 @@
 package com.example.datnv1.Rest.Product;
 
 import com.example.datnv1.DTO.ApiResponse;
+import com.example.datnv1.DTO.Req.Product.ProductReqDTO;
 import com.example.datnv1.Entity.Product.Product;
 import com.example.datnv1.Entity.Product.Unit;
 import com.example.datnv1.Service.ProductService.ProductSevice;
@@ -34,11 +35,11 @@ public class ProductRest {
     }
 
     @PostMapping("/add-product")
-    public ResponseEntity<?> addProduct(@RequestBody Product product) {
+    public ResponseEntity<?> addProduct(@RequestBody ProductReqDTO productReqDTO) {
         try {
             return ResponseEntity
                     .status(HttpStatus.OK)
-                    .body(ApiResponse.success(productSevice.add(product), "Thêm mới đơn vị thành công!"));
+                    .body(ApiResponse.success(productSevice.add(productReqDTO), "Thêm mới sản phẩm"));
         }catch (Exception e){
             return ResponseEntity
                     .status(HttpStatus.CONFLICT)
@@ -51,7 +52,7 @@ public class ProductRest {
         try {
             return ResponseEntity
                     .status(HttpStatus.OK)
-                    .body(ApiResponse.success(productSevice.findAll(), "Thêm mới đơn vị thành công!"));
+                    .body(ApiResponse.success(productSevice.findAll(), "Lấy danh sách sản phẩm thành công!"));
         }catch (Exception e){
             return ResponseEntity
                     .status(HttpStatus.CONFLICT)

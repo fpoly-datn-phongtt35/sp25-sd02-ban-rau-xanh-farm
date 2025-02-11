@@ -21,7 +21,7 @@ public class ProductDetail extends BaseEntity {
     @Column
     private String productDetailName;
 
-    @Column
+    @Transient
     private Long quantity;
 
     @Column

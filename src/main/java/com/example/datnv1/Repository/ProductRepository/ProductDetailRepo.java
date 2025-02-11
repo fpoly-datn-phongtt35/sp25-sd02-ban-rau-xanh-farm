@@ -1,4 +1,7 @@
 package com.example.datnv1.Repository.ProductRepository;
 
-public class ProductDetailRepo {
+import com.example.datnv1.Entity.Product.ProductDetail;
+import org.springframework.data.repository.CrudRepository;
+
+public interface ProductDetailRepo extends CrudRepository<ProductDetail, Long> {
 }
