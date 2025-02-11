@@ -1,3 +1,38 @@
 {
-  "id" :
+  "name" : "Rau xanh từ vườn",
+  "description" : "Rau chuẩn vị việt",
+  "price" : "12000",
+  "unitId" : 1,
+  "batchSet": [
+    {
+      "name": "Lô hàng long biên",
+      "importDate": "12/2/2024",
+      "outDate": "16/2/2024",
+      "quantity": 20000,
+      "code" : "ff7430f6-5c89-470d-813f-0a9d9eccf428"
+    },
+    {
+      "name": "Lô hàng Đông Anh",
+      "importDate" : "12/2/2024",
+      "outDate" : "16/2/2024",
+      "quantity" : 20000,
+      "code" : "f2fcfd02-7489-4c32-b431-8671162048dd"
+    }
+  ],
+  "productDetailSet" : [
+    {
+      "name" : "Túi 5kg rau xanh",
+      "weight" : "5",
+      "productDetailBatch" : [
+        {
+          "batchCode" : "ff7430f6-5c89-470d-813f-0a9d9eccf428",
+          "quatity" : 200
+        },
+        {
+          "batchCode" : "f2fcfd02-7489-4c32-b431-8671162048dd",
+          "quatity" : 200
+        }
+      ]
+    }
+  ]
 }

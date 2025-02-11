@@ -18,6 +18,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Cart extends BaseEntity {
+
     @OneToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;

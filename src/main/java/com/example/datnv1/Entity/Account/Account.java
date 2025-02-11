@@ -26,9 +26,6 @@ public class Account extends BaseEntity {
     private String phone;
 
     @Column(nullable = false)
-    private String idCart;
-
-    @Column(nullable = false)
     private String address;
 
     @Column(nullable = false)

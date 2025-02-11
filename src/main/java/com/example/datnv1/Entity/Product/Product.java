@@ -2,6 +2,7 @@ package com.example.datnv1.Entity.Product;
 
 
 import com.example.datnv1.Entity.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,15 +28,23 @@ public class Product extends BaseEntity {
     private int price;
 
     @Transient
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Long untilId;
+
+    @Transient
+    private String unitName;
 
     @ManyToOne
     @JoinColumn(name = "unit_id")
     private Unit unit;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "product")
     private Set<Batch> batchSet = new HashSet<>();
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "product")
     private Set<Image> imageSet = new HashSet<>();
+
+    public String getUnitName() {
+        return unit.getName();
+    }
 }

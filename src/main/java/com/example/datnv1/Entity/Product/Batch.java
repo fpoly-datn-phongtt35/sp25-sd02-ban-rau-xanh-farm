@@ -11,6 +11,7 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table(name = "batch")
@@ -19,6 +20,12 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Batch extends BaseEntity {
+
+    @Column
+    private String name;
+
+    @Column
+    private UUID code;
 
     @Column
     private LocalDate importDate;
@@ -31,6 +38,7 @@ public class Batch extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "product_id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Product product;
 
     @OneToMany(mappedBy = "batch")
