@@ -17,7 +17,6 @@ public class ProductSevice {
 
     @Autowired
     ProductRepo productRepo;
-
     @Autowired
     BatchSevice batchSevice;
     @Autowired
@@ -25,7 +24,7 @@ public class ProductSevice {
     @Autowired
     ProductDetailService productDetailService;
 
-    public Product add(ProductReqDTO productReqDTO) {
+    public ProductResDTO add(ProductReqDTO productReqDTO) {
 
         Product product = new Product();
         product.setName(productReqDTO.getName());
@@ -43,7 +42,7 @@ public class ProductSevice {
         productReqDTO.getProductDetailSet().forEach(item -> {
             productDetailService.save(item);
         });
-        return product;
+        return ProductMapper.convertProductToDTO(product);
     }
 
     public List<ProductResDTO> findAll() {
