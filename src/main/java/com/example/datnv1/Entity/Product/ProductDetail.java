@@ -25,21 +25,18 @@ public class ProductDetail extends BaseEntity {
     private String productDetailName;
 
     @Transient
-    private Long quantity;
+    private int quantity;
 
     @Column
-    private Float weight;
+    private float weight;
 
     @Column
-    private Float sum;
+    private float sum;
 
     @Column
-    private Float price;
+    private float price;
 
     @OneToMany(mappedBy = "productDetail")
     private Set<ProductDetailBatch> productDetailBatches = new HashSet<ProductDetailBatch>();
 
-    @OneToMany(mappedBy = "productDetail")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private List<OrderDetail> orderDetailList;
 }

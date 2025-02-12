@@ -27,10 +27,10 @@ public class ProductDetailService {
         ProductDetail productDetail = new ProductDetail();
         productDetail.setProductDetailName(productDetailReqDTO.getName());
         productDetail.setWeight(productDetailReqDTO.getWeight());
-        long sumQuantity = productDetailReqDTO
+        int sumQuantity = productDetailReqDTO
                     .getProductDetailBatch()
                     .stream()
-                .mapToLong(ProductDetailBatchReqDTO::getQuatity)
+                .mapToInt(ProductDetailBatchReqDTO::getQuatity)
                 .sum();
         productDetail.setQuantity(sumQuantity);
         productDetailRepo.save(productDetail);
@@ -44,5 +44,10 @@ public class ProductDetailService {
             productDetailBatch.setQuantity(item.getQuatity());
             productDetailBatchRepo.save(productDetailBatch);
         });
+    }
+
+    public ProductDetailBatch getProductDetailBatchById(Long id) {
+        return productDetailBatchRepo.findById(id)
+                .orElseThrow(()-> new RuntimeException(" Không tìm thấy product detail batch !"));
     }
 }

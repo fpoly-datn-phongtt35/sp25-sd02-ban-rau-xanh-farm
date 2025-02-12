@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -48,7 +49,7 @@ public class Orders extends BaseEntity {
     private String status;
 
     @OneToMany(mappedBy = "orders")
-    private List<OrderDetail> orderDetailList;
+    private List<OrderDetail> orderDetailList = new ArrayList<>();
 
 
 }

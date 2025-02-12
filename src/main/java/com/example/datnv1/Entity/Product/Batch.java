@@ -34,7 +34,8 @@ public class Batch extends BaseEntity {
     private LocalDate outDate;
 
     @Column
-    private Long quantity;
+    private long quantity;
+
 
     @ManyToOne
     @JoinColumn(name = "product_id")
