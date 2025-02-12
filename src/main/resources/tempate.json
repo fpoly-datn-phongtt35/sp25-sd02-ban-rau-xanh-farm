@@ -49,7 +49,7 @@
     "dateOfReceipt" : "12:00 2024-2-2",
     "billDetails": [
       {
-        "productDetailId" : null,
+        "productDetails" : null,
         "quantity": 2,
         "batches":[
           {
@@ -63,7 +63,12 @@
         ]
       },
       {
-        "productDetailId" : 1,
+        "productDetails" : [
+          {
+            "productDetailBatchId": 1,
+            "quantity": 100
+          }
+        ],
         "quantity": 1,
         "batches": null
       }

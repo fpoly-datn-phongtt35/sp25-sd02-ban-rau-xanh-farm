@@ -2,6 +2,7 @@ package com.example.datnv1.DTO.Req.Orders;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -15,10 +16,10 @@ public class OrderReqDTO {
     private Long employeeId;
     private Long voucherId;
     private String shipType;
-    private String node;
+    private String note;
     private String address;
     private String customerName;
     private String phoneNumber;
-    private String dateOfReceipt;
+    private LocalDateTime dateOfReceipt;
     private List<OrderDetailsReqDTO> billDetails;
 }

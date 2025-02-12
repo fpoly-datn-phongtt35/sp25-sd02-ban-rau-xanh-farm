@@ -11,6 +11,7 @@ import java.util.UUID;
 @Builder
 public class ProductDetailBatchReqDTO {
 
+    private Long id;
     private UUID batchCode;
-    private Long quatity;
+    private int quatity;
 }
