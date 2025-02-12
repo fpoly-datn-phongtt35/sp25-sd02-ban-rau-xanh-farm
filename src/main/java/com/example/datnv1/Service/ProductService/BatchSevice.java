@@ -21,4 +21,9 @@ public class BatchSevice {
                 .orElseThrow(() -> new RuntimeException("Không tìm thấy lô hàng") );
     }
 
+    public Batch getById(Long id){
+        return batchRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy lô hàng") );
+    }
+
 }
