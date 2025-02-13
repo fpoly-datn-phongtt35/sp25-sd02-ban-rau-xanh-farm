@@ -3,6 +3,7 @@ package com.example.datnv1.Entity.Orders;
 
 import com.example.datnv1.Entity.BaseEntity;
 import com.example.datnv1.Entity.Product.Batch;
+import com.example.datnv1.Entity.Product.Product;
 import com.example.datnv1.Entity.Product.ProductDetail;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
@@ -34,6 +35,16 @@ public class OrderDetail extends BaseEntity {
     private String type;
     @Column
     private String status;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    Product product;
+
+    @ManyToOne
+    @JoinColumn(name = "product_detail_id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    ProductDetail productDetail;
 
     @OneToMany(mappedBy = "orderDetail")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

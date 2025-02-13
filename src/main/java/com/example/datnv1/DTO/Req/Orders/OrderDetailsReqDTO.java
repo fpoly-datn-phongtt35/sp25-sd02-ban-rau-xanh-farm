@@ -2,6 +2,7 @@ package com.example.datnv1.DTO.Req.Orders;
 
 import com.example.datnv1.DTO.Req.Product.ProductDetailBatchReqDTO;
 import com.example.datnv1.Entity.Orders.Orders;
+import com.example.datnv1.Enum.SellType;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -16,10 +17,9 @@ public class OrderDetailsReqDTO {
 
     private List <ProductDetailOrderReqDTO> productDetails;
     private List<OrderDetaiBatchReqDTO> batches;
-    private Long orderId;
+    private ProductInfo productInfo;
     private Orders order;
-    private int quantity;
-
+    private SellType type;
 
     public List <ProductDetailOrderReqDTO> getProductDetails() {
         if(productDetails == null) return new ArrayList<>();

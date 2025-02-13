@@ -2,6 +2,7 @@ package com.example.datnv1.Entity.Product;
 
 
 import com.example.datnv1.Entity.BaseEntity;
+import com.example.datnv1.Entity.Orders.OrderDetail;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,7 +10,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -33,6 +36,10 @@ public class Product extends BaseEntity {
 
     @Transient
     private String unitName;
+
+    @OneToMany(mappedBy = "product")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    List<OrderDetail> orderDetailList = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "unit_id")

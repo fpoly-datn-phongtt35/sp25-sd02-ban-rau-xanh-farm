@@ -34,7 +34,13 @@ public class Batch extends BaseEntity {
     private LocalDate outDate;
 
     @Column
-    private long quantity;
+    private float quantity;
+
+    @Column
+    private float quantityRetail;
+
+    @Column
+    private float reservedQuantity = 0;
 
 
     @ManyToOne

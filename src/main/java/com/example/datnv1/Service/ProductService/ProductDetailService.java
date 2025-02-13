@@ -10,6 +10,8 @@ import com.example.datnv1.Repository.ProductRepository.ProductDetailRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProductDetailService {
 
@@ -33,6 +35,7 @@ public class ProductDetailService {
                 .mapToInt(ProductDetailBatchReqDTO::getQuatity)
                 .sum();
         productDetail.setQuantity(sumQuantity);
+        productDetail.setPrice(productDetailReqDTO.getPrice());
         productDetailRepo.save(productDetail);
 
         productDetailReqDTO.getProductDetailBatch().forEach(item ->{
@@ -42,12 +45,27 @@ public class ProductDetailService {
             Batch batch = batchSevice.getByCode(item.getBatchCode());
             productDetailBatch.setBatch(batch);
             productDetailBatch.setQuantity(item.getQuatity());
+            batch.setQuantityRetail(batch.getQuantity() - item.getQuatity() * productDetail.getWeight());
+            System.out.println(batch.getQuantity() + "-" + item.getQuatity());
+            batchSevice.batchSave(batch);
             productDetailBatchRepo.save(productDetailBatch);
         });
+    }
+    public void save(ProductDetailBatch productDetailBatch){
+        productDetailBatchRepo.save(productDetailBatch);
     }
 
     public ProductDetailBatch getProductDetailBatchById(Long id) {
         return productDetailBatchRepo.findById(id)
                 .orElseThrow(()-> new RuntimeException(" Không tìm thấy product detail batch !"));
+    }
+
+    public ProductDetail getByProductDetailId(Long id) {
+        return productDetailRepo.findById(id)
+                .orElseThrow(()-> new RuntimeException("Không tìm thấy sản phẩm chi tiết!"));
+    }
+
+    public List<ProductDetailBatch> findFirstByProductDetailAndAvailableStock(Long productDetailId) {
+        return productDetailBatchRepo.findFirstByProductDetailAndAvailableStock(productDetailId);
     }
 }

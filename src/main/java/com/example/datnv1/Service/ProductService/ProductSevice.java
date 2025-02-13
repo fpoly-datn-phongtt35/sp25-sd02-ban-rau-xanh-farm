@@ -52,4 +52,9 @@ public class ProductSevice {
                 .map(ProductMapper::convertProductToDTO)
                 .toList();
     }
+
+    public Product getById(Long id) {
+        return productRepo.findById(id)
+                .orElseThrow(()-> new RuntimeException("Không tìm thấy sản phẩm!"));
+    }
 }
