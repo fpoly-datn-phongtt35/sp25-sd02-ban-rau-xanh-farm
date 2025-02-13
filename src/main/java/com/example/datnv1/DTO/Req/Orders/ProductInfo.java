@@ -1,6 +1,5 @@
 package com.example.datnv1.DTO.Req.Orders;
 
-
 import lombok.*;
 
 @Getter
@@ -8,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProductDetailOrderReqDTO {
-    private Long productDetailBatchId;
-    private int quantity;
+public class ProductInfo {
+    private Long productId;
+    private float quantity;
 }

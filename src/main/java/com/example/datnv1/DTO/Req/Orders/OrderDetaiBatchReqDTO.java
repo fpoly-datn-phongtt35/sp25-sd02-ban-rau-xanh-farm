@@ -9,5 +9,5 @@ import lombok.*;
 @Builder
 public class OrderDetaiBatchReqDTO {
     private Long batchId;
-    private double quantity;
+    private float quantity;
 }

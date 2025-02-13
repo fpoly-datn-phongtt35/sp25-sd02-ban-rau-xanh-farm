@@ -6,6 +6,7 @@ import com.example.datnv1.Entity.Orders.OrderDetail;
 import com.example.datnv1.Entity.Orders.Orders;
 import com.example.datnv1.Enum.OrderStatus;
 import com.example.datnv1.Repository.OrderRepository.OrderRepo;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,7 @@ public class OrderService {
     @Autowired
     OrderDetailService orderDetailService;
 
+    @Transactional
     public Orders save(OrderReqDTO dto)  {
         Orders order = new Orders();
         order.setAddress(dto.getAddress());
@@ -35,6 +37,37 @@ public class OrderService {
         }
         return order;
     }
+
+    @Transactional
+    public Orders handleSavePending(OrderReqDTO dto){
+        Orders order = new Orders();
+        order.setAddress(dto.getAddress());
+        order.setNote(dto.getNote());
+        order.setStatus(OrderStatus.PENDING.toString());
+        order.setNameCustomer(dto.getCustomerName());
+        order.setPhoneCustomer(dto.getPhoneNumber());
+        order.setDateOfReceipt(dto.getDateOfReceipt());
+        order = orderRepo.save(order);
+        for (OrderDetailsReqDTO item: dto.getBillDetails()){
+            item.setOrder(order);
+            order.getOrderDetailList().add(orderDetailService.handleSaveOrderPending(item));
+        }
+        return order;
+    }
+
+    public Orders handleSaveConfirm(Long orderId){
+        Orders order = getById(orderId);
+        order.setStatus(OrderStatus.CONFIRM.toString());
+        return orderRepo.save(order);
+    }
+
+    public Orders getById(Long orderId){
+        return orderRepo.findById(orderId)
+                .orElseThrow(()-> new RuntimeException("Không tìm thấy hóa đơn"));
+    }
+
+
+
 
     public List<Orders> getAll()  {
         return orderRepo.findAll();

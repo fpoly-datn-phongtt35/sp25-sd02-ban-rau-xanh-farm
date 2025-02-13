@@ -25,5 +25,5 @@ public class ProductDetailOrder extends BaseEntity {
     private OrderDetail orderDetail;
 
     @Column
-    private int quantity;
+    private long quantity;
 }

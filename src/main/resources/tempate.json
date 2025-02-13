@@ -49,8 +49,12 @@
     "dateOfReceipt" : "12:00 2024-2-2",
     "billDetails": [
       {
+        "productInfo": {
+          "productId": 1,
+          "quantity" : 100
+        },
+        "type" : "RETAIL",
         "productDetails" : null,
-        "quantity": 2,
         "batches":[
           {
             "batchId" : 1,
@@ -63,13 +67,17 @@
         ]
       },
       {
+        "productInfo":{
+          "productId": 1,
+          "quantity" : 1000
+        },
+        "type" : "PRODUCT_DETAIL",
         "productDetails" : [
           {
             "productDetailBatchId": 1,
             "quantity": 100
           }
         ],
-        "quantity": 1,
         "batches": null
       }
     ]

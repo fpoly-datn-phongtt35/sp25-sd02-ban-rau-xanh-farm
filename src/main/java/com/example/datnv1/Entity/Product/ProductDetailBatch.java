@@ -25,6 +25,9 @@ public class ProductDetailBatch extends BaseEntity {
     @Column
     private long quantity;
 
+    @Column
+    private long reservedQuantity = 0;
+
     @ManyToOne
     @JoinColumn(name = "product_detail_id")
     private ProductDetail productDetail;

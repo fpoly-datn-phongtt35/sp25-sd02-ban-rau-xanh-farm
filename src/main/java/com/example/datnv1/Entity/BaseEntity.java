@@ -28,6 +28,6 @@ public abstract class BaseEntity {
     private LocalDateTime updatedAt;
 
     @Column
-    private boolean isActive ;
+    private boolean isActive = true ;
 }
 
