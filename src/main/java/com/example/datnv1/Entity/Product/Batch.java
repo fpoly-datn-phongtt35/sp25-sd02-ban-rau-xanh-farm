@@ -1,6 +1,8 @@
 package com.example.datnv1.Entity.Product;
 
 import com.example.datnv1.Entity.BaseEntity;
+import com.example.datnv1.Entity.Orders.OrderDetail;
+import com.example.datnv1.Entity.Orders.OrderDetailBatch;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,9 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Table(name = "batch")
@@ -34,7 +34,14 @@ public class Batch extends BaseEntity {
     private LocalDate outDate;
 
     @Column
-    private Long quantity;
+    private float quantity;
+
+    @Column
+    private float quantityRetail;
+
+    @Column
+    private float reservedQuantity = 0;
+
 
     @ManyToOne
     @JoinColumn(name = "product_id")
@@ -44,5 +51,9 @@ public class Batch extends BaseEntity {
     @OneToMany(mappedBy = "batch")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Set<ProductDetailBatch> productDetailBatches = new HashSet<ProductDetailBatch>();
+
+    @OneToMany(mappedBy = "batch")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private List<OrderDetailBatch> orderDetailBatchList = new ArrayList<OrderDetailBatch>();
 
 }
