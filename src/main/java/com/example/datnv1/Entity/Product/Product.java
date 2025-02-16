@@ -3,6 +3,7 @@ package com.example.datnv1.Entity.Product;
 
 import com.example.datnv1.Entity.BaseEntity;
 import com.example.datnv1.Entity.Orders.OrderDetail;
+import com.example.datnv1.Enum.ProductStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -29,6 +30,9 @@ public class Product extends BaseEntity {
     private String description;
     @Column
     private int price;
+
+    @Column
+    private String status = ProductStatus.ACTIVE.toString();
 
     @Transient
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

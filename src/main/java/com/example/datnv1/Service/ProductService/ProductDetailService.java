@@ -7,6 +7,7 @@ import com.example.datnv1.Entity.Product.ProductDetail;
 import com.example.datnv1.Entity.Product.ProductDetailBatch;
 import com.example.datnv1.Repository.ProductRepository.ProductDetailBatchRepo;
 import com.example.datnv1.Repository.ProductRepository.ProductDetailRepo;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,7 @@ public class ProductDetailService {
     @Autowired
     BatchSevice batchSevice;
 
+    @Transactional
     public void save(ProductDetailReqDTO productDetailReqDTO) {
 
         ProductDetail productDetail = new ProductDetail();
@@ -51,6 +53,7 @@ public class ProductDetailService {
             productDetailBatchRepo.save(productDetailBatch);
         });
     }
+    @Transactional
     public void save(ProductDetailBatch productDetailBatch){
         productDetailBatchRepo.save(productDetailBatch);
     }

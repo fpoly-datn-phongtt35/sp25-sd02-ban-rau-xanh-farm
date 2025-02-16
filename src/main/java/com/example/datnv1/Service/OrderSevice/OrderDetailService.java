@@ -43,7 +43,7 @@ public class OrderDetailService {
     ProductSevice productSevice;
 
     @Transactional
-    public OrderDetail save(OrderDetailsReqDTO dto) {
+    public OrderDetail saveWhenScan(OrderDetailsReqDTO dto) {
 
         if(!dto.getBatches().isEmpty() && !dto.getProductDetails().isEmpty()) {
             throw new RuntimeException("Chỉ có thể mua theo cân hoặc sản phẩm chi tiết!");
@@ -180,8 +180,33 @@ public class OrderDetailService {
     }
 
 
+    @Transactional
+    public void handleSaveOrderConfirm(OrderDetail orderDetail){
+        String type = orderDetail.getType();
+        if(type.equals(SellType.RETAIL.toString())){
+            for (OrderDetailBatch item : orderDetail.getOrderDetailBatchList()){
+                Batch batch = item.getBatch();
+                batch.setQuantityRetail((float) (batch.getQuantityRetail() - item.getQuantity()));
+                batch.setQuantity((float) (batch.getQuantity() - item.getQuantity()));
+                batch.setReservedQuantity((float) (batch.getReservedQuantity() - item.getQuantity()));
+                batchSevice.batchSave(batch);
+            }
+        }else{
+            for (ProductDetailOrder item : orderDetail.getProductDetailOrderList()){
+                ProductDetailBatch productDetailBatch = item.getProductDetailBatch();
+                Batch batch =  productDetailBatch.getBatch();
 
+                productDetailBatch.setQuantity(productDetailBatch.getQuantity() - item.getQuantity());
+                productDetailBatch.setReservedQuantity(productDetailBatch.getReservedQuantity() - item.getQuantity());
+                productDetailService.save(productDetailBatch);
 
+                batch.setQuantity((float) (batch.getQuantity() - item.getQuantity() * productDetailBatch.getProductDetail().getWeight()));
+                batchSevice.batchSave(batch);
+            }
+        }
+    }
+
+    @Transactional
     public Map<Batch, Float> allocateStockFIFO(Long productId, float requiredQuantity) {
         Map<Batch, Float> allocations = new LinkedHashMap<>();
 
@@ -203,7 +228,7 @@ public class OrderDetailService {
 
         return allocations;
     }
-
+    @Transactional
     public Map<ProductDetailBatch, Long> allocateStockFIFOForProductDetailBatch(Long productDetailId, long requiredQuantity) {
         Map<ProductDetailBatch, Long> allocations = new LinkedHashMap<>();
         List<ProductDetailBatch> availableBatches = productDetailService.findFirstByProductDetailAndAvailableStock(productDetailId);

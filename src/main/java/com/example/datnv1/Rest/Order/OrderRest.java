@@ -15,20 +15,6 @@ public class OrderRest {
     @Autowired
     OrderService orderService;
 
-    // Test
-    @PostMapping("/create-order")
-    public ResponseEntity<?> createOrder( @RequestBody OrderReqDTO dto) {
-        try {
-            return ResponseEntity
-                    .status(HttpStatus.OK)
-                    .body(ApiResponse.success(orderService.save(dto),"Tạo hóa đơn thành công!"));
-        }catch (Exception e) {
-            return ResponseEntity
-                    .status(HttpStatus.CONFLICT)
-                    .body(ApiResponse.error(HttpStatus.CONFLICT, e.getMessage(), e.getMessage()));
-        }
-    }
-
     @PostMapping("/create-order-pending")
     public ResponseEntity<?> createOrderPending( @RequestBody OrderReqDTO dto) {
         try {
@@ -41,6 +27,20 @@ public class OrderRest {
                     .body(ApiResponse.error(HttpStatus.CONFLICT, e.getMessage(), e.getMessage()));
         }
     }
+
+    @PutMapping("/confirm")
+    public ResponseEntity<?> confim( @RequestParam(value = "id", defaultValue = "0") Long orderId) {
+        try {
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(ApiResponse.success(orderService.handleSaveConfirm(orderId),"Hóa đơn xác nhận thành công!"));
+        }catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .body(ApiResponse.error(HttpStatus.CONFLICT, "xác nhận thất bại!", e.getMessage()));
+        }
+    }
+
     @GetMapping("/get-all-orders")
     public ResponseEntity<?> getAllOrders() {
         try {
