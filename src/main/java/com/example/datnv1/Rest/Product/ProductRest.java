@@ -59,4 +59,19 @@ public class ProductRest {
                     .body(ApiResponse.error(HttpStatus.CONFLICT,e.getMessage(), e.getMessage()));
         }
     }
+
+    @GetMapping("/get-product-page")
+    public ResponseEntity<?> getPage(@RequestParam(defaultValue = "0") int page,
+                                     @RequestParam(defaultValue = "10") int size,
+                                     @RequestParam(defaultValue = "") String keyword) {
+        try {
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(ApiResponse.success(productSevice.getByPage(page,size,keyword), "Lấy danh sách sản phẩm thành công!"));
+        }catch (Exception e){
+            return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .body(ApiResponse.error(HttpStatus.CONFLICT,"Thất bại", e.getMessage()));
+        }
+    }
 }

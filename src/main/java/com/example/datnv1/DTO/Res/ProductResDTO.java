@@ -3,6 +3,8 @@ package com.example.datnv1.DTO.Res;
 
 import lombok.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Getter
@@ -13,8 +15,12 @@ import java.util.Set;
 public class ProductResDTO {
     private Long id;
     private String name;
+    private LocalDateTime updatedAt;
     private String description;
-    private Set<String> image;
+    private String[] images = new String[]{"https://placehold.co/50x50"};
     private float price;
     private String unitName;
+    private float quantity;
+    private float quantityRetail;
+    private String status;
 }
