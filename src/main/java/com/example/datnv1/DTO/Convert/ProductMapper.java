@@ -14,6 +14,11 @@ public class ProductMapper {
             quantity += item.getQuantity();
             quantityRetail += item.getQuantityRetail();
         }
+
+//        for(Batch item  : product.getBatchSet()){
+//            quantity += item.getQuantity();
+//            quantityRetail += item.getQuantityRetail();
+//        }
         return ProductResDTO.builder()
                 .id(product.getId())
                 .name(product.getName())
