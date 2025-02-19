@@ -27,11 +27,11 @@
         "productDetailBatch" : [
           {
             "batchCode" : "ff7430f6-5c89-470d-813f-0a9d9eccf428",
-            "quatity" : 200
+            "quantity" : 200
           },
           {
             "batchCode" : "f2fcfd02-7489-4c32-b431-8671162048dd",
-            "quatity" : 200
+            "quantity" : 200
           }
         ]
       }

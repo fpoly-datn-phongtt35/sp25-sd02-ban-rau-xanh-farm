@@ -1,6 +1,7 @@
 package com.example.datnv1.Service.ProductService;
 
 import com.example.datnv1.Entity.Product.Batch;
+import com.example.datnv1.Entity.Product.ProductDetailBatch;
 import com.example.datnv1.Repository.ProductRepository.BatchRepo;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,6 @@ public class BatchSevice {
     public List<Batch> findAvailableBatchesByProduct(Long productId){
         return batchRepo.findAvailableBatchesByProduct(productId);
     }
+
 
 }

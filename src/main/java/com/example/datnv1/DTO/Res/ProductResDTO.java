@@ -1,10 +1,12 @@
 package com.example.datnv1.DTO.Res;
 
 
+import com.example.datnv1.Entity.Product.Image;
 import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -17,7 +19,7 @@ public class ProductResDTO {
     private String name;
     private LocalDateTime updatedAt;
     private String description;
-    private String[] images = new String[]{"https://placehold.co/50x50"};
+    private Set<Image> images;
     private float price;
     private String unitName;
     private float quantity;

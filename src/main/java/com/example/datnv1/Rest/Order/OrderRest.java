@@ -28,6 +28,19 @@ public class OrderRest {
         }
     }
 
+    @PostMapping("/create-order-pending-in-pos")
+    public ResponseEntity<?> createOrderPendingInPos() {
+        try {
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(ApiResponse.success(orderService.createInPos(),"Tạo hóa đơn thành công!"));
+        }catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .body(ApiResponse.error(HttpStatus.CONFLICT, e.getMessage(), e.getMessage()));
+        }
+    }
+
     @PutMapping("/confirm")
     public ResponseEntity<?> confim( @RequestParam(value = "id", defaultValue = "0") Long orderId) {
         try {
@@ -47,6 +60,19 @@ public class OrderRest {
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body(ApiResponse.success(orderService.getAll(),"Tạo hóa đơn thành công!"));
+        }catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .body(ApiResponse.error(HttpStatus.CONFLICT, e.getMessage(), e.getMessage()));
+        }
+    }
+
+    @GetMapping("/get-all-pending-offline")
+    public ResponseEntity<?> getAllPendingOffline() {
+        try {
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(ApiResponse.success(orderService.getAllPendingOffline(),"Lấy hóa đơn!"));
         }catch (Exception e) {
             return ResponseEntity
                     .status(HttpStatus.CONFLICT)

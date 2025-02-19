@@ -13,5 +13,5 @@ public class ProductDetailBatchReqDTO {
 
     private Long id;
     private UUID batchCode;
-    private int quatity;
+    private int quantity;
 }

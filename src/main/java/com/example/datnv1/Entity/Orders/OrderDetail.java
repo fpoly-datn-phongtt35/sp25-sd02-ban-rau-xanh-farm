@@ -35,6 +35,8 @@ public class OrderDetail extends BaseEntity {
     private String type;
     @Column
     private String status;
+    @Transient
+    private String productDetailName;
 
     @ManyToOne
     @JoinColumn(name = "product_id")

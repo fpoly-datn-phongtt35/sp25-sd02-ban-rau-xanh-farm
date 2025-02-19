@@ -38,7 +38,7 @@ public class ProductDetail extends BaseEntity {
     private float price;
 
     @OneToMany(mappedBy = "productDetail")
-    private Set<ProductDetailBatch> productDetailBatches = new HashSet<ProductDetailBatch>();
+    private Set<ProductDetailBatch> productDetailBatches = new HashSet<>();
 
     @OneToMany(mappedBy = "productDetail")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

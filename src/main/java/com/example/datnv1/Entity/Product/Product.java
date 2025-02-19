@@ -55,6 +55,10 @@ public class Product extends BaseEntity {
     @OneToMany(mappedBy = "product")
     private Set<Image> imageSet = new HashSet<>();
 
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
     public String getUnitName() {
         return unit.getName();
     }

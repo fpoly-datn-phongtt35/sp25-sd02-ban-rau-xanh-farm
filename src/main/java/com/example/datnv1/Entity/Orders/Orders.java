@@ -13,6 +13,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "bill")
@@ -33,6 +34,8 @@ public class Orders extends BaseEntity {
     @Column
     private String note;
     @Column
+    private String orderType;
+    @Column
     private float totalQuantity;
     @Column
     private LocalDateTime dateOfReceipt;
@@ -51,5 +54,9 @@ public class Orders extends BaseEntity {
     @OneToMany(mappedBy = "orders")
     private List<OrderDetail> orderDetailList = new ArrayList<>();
 
+    public void generateCode() {
+        String uniqueCode = "HD" + UUID.randomUUID().toString().substring(0, 8);
+        this.code = uniqueCode;
+    }
 
 }

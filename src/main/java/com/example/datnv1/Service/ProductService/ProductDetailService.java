@@ -34,7 +34,7 @@ public class ProductDetailService {
         int sumQuantity = productDetailReqDTO
                     .getProductDetailBatch()
                     .stream()
-                .mapToInt(ProductDetailBatchReqDTO::getQuatity)
+                .mapToInt(ProductDetailBatchReqDTO::getQuantity)
                 .sum();
         productDetail.setQuantity(sumQuantity);
         productDetail.setPrice(productDetailReqDTO.getPrice());
@@ -46,9 +46,8 @@ public class ProductDetailService {
             productDetailBatch.setProductDetail(productDetail);
             Batch batch = batchSevice.getByCode(item.getBatchCode());
             productDetailBatch.setBatch(batch);
-            productDetailBatch.setQuantity(item.getQuatity());
-            batch.setQuantityRetail(batch.getQuantity() - item.getQuatity() * productDetail.getWeight());
-            System.out.println(batch.getQuantity() + "-" + item.getQuatity());
+            productDetailBatch.setQuantity(item.getQuantity());
+            batch.setQuantityRetail(batch.getQuantity() - item.getQuantity() * productDetail.getWeight());
             batchSevice.batchSave(batch);
             productDetailBatchRepo.save(productDetailBatch);
         });

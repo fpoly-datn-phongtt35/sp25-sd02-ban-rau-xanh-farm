@@ -139,12 +139,14 @@ public class OrderDetailService {
 
 
 
+
     @Transactional
     public OrderDetail handleSaveOrderPending(OrderDetailsReqDTO dto) {
         SellType type = dto.getType();
 
         OrderDetail orderDetail = new OrderDetail();
         String productName = "";
+        String productDetailName = "";
         float price = 0;
         Float quantity = 0f;
 
@@ -159,7 +161,8 @@ public class OrderDetailService {
             saveOrderDetailBatches(orderDetail, allocatedBatches);
         }else{
             ProductDetail productDetail = productDetailService.getByProductDetailId(dto.getProductInfo().getProductId());
-            productName = productDetail.getProductDetailName();
+            productDetailName = productDetail.getProductDetailName();
+            productName = productDetail.getProductDetailBatches().iterator().next().getBatch().getProduct().getName();
             price = productDetail.getPrice();
             quantity = dto.getProductInfo().getQuantity();
             orderDetail.setProductDetail(productDetail);
@@ -171,6 +174,7 @@ public class OrderDetailService {
         }
 
         orderDetail.setProductName(productName);
+        orderDetail.setProductDetailName(productDetailName);
         orderDetail.setQuantity(quantity);
         orderDetail.setPrice(price);
         orderDetail.setTotal((float)( price * quantity));

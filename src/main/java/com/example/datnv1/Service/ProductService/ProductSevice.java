@@ -3,8 +3,11 @@ package com.example.datnv1.Service.ProductService;
 import com.example.datnv1.DTO.Convert.ProductMapper;
 import com.example.datnv1.DTO.Req.Product.ProductReqDTO;
 import com.example.datnv1.DTO.Res.ProductResDTO;
+import com.example.datnv1.Entity.Product.Category;
+import com.example.datnv1.Entity.Product.Image;
 import com.example.datnv1.Entity.Product.Product;
 import com.example.datnv1.Entity.Product.Unit;
+import com.example.datnv1.Repository.ProductRepository.ImageRepo;
 import com.example.datnv1.Repository.ProductRepository.ProductRepo;
 import com.example.datnv1.Specification.ProductSpecification;
 import jakarta.transaction.Transactional;
@@ -29,6 +32,12 @@ public class ProductSevice {
     @Autowired
     UntilService untilService;
     @Autowired
+    CategoryService categoryService;
+
+    @Autowired
+    ImageRepo imageRepo;
+
+    @Autowired
     ProductDetailService productDetailService;
 
     @Transactional
@@ -41,8 +50,18 @@ public class ProductSevice {
 
         Unit unit = untilService.getById(productReqDTO.getUnitId());
         product.setUnit(unit);
+        Category category = categoryService.getById(productReqDTO.getCategoryId());
+        product.setCategory(category);
+
         productRepo.save(product);
 
+        for(Image item : productReqDTO.getImages()) {
+            imageRepo.save(Image.builder()
+                            .product(product)
+                            .url(item.getUrl())
+                            .slot(item.getSlot())
+                    .build());
+        }
         productReqDTO.getBatchSet().forEach(item -> {
             item.setProduct(product);
             batchSevice.batchSave(item);

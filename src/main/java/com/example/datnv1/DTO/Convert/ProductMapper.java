@@ -14,11 +14,6 @@ public class ProductMapper {
             quantity += item.getQuantity();
             quantityRetail += item.getQuantityRetail();
         }
-
-//        for(Batch item  : product.getBatchSet()){
-//            quantity += item.getQuantity();
-//            quantityRetail += item.getQuantityRetail();
-//        }
         return ProductResDTO.builder()
                 .id(product.getId())
                 .name(product.getName())
@@ -27,7 +22,7 @@ public class ProductMapper {
                 .unitName(product.getUnitName())
                 .quantity(quantity)
                 .quantityRetail(quantityRetail)
-                .images(new String[]{"https://placehold.co/50x50"})
+                .images(product.getImageSet())
                 .updatedAt(product.getUpdatedAt())
                 .status(product.getStatus())
                 .build();
