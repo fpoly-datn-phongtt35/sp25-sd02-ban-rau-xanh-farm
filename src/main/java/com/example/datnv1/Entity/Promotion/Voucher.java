@@ -1,6 +1,7 @@
 package com.example.datnv1.Entity.Promotion;
 
 import com.example.datnv1.Entity.BaseEntity;
+import com.example.datnv1.Enum.VoucherType;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -31,7 +32,7 @@ public class Voucher extends BaseEntity {
     private Double value;
 
     @Column(nullable = false)
-    private String type;
+    private VoucherType type;
 
     @Column(nullable = false)
     private LocalDateTime startAt;
