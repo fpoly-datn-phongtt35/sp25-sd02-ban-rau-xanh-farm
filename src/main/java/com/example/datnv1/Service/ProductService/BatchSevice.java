@@ -20,5 +20,4 @@ public class BatchSevice {
         return batchRepo.findByCode(code)
                 .orElseThrow(() -> new RuntimeException("Không tìm thấy lô hàng") );
     }
-
 }

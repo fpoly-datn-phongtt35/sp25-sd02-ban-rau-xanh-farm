@@ -20,8 +20,10 @@ public class ProductSevice {
 
     @Autowired
     BatchSevice batchSevice;
+
     @Autowired
     UntilService untilService;
+
     @Autowired
     ProductDetailService productDetailService;
 
