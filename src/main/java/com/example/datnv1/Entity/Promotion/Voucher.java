@@ -20,37 +20,28 @@ import java.util.List;
 @AllArgsConstructor
 public class Voucher extends BaseEntity {
 
-    @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, unique = true)
     private String code;
 
-    @Column(nullable = false)
     private Integer quantity;
 
     private Double maxDiscount;
 
     private Double minBill;
 
-    @Column(nullable = false)
-    private Double value;
-
-    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private VoucherType voucherType;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private DiscountType discountType;
 
-    @Column(nullable = false)
+    private Double value;
+
     private LocalDateTime startAt;
 
-    @Column(nullable = false)
     private LocalDateTime endAt;
 
-    @Column(nullable = false)
     private String status;
 
     // Chỉ áp dụng nếu type = 2 (Voucher sản phẩm)
