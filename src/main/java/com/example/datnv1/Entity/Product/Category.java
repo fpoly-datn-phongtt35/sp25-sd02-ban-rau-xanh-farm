@@ -4,25 +4,25 @@ package com.example.datnv1.Entity.Product;
 import com.example.datnv1.Entity.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Builder
+import java.util.List;
+
 @Entity
-@Table(name = "image")
+@Table(name = "category")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Image extends BaseEntity {
+public class Category extends BaseEntity {
 
     @Column
-    private String url;
+    private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
+    @OneToMany(mappedBy = "category")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Product product;
-
-    @Column
-    private int slot;
+    private List<Product> products;
 }

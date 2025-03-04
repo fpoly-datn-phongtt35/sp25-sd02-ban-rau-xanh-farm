@@ -5,6 +5,8 @@ import com.example.datnv1.Repository.ProductRepository.UntilRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UntilService {
 
@@ -22,5 +24,8 @@ public class UntilService {
     public Unit getById(Long id) {
         return untilRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Không tìm thấy đơn vị"));
+    }
+    public List<Unit> getAll() {
+        return untilRepo.findAll();
     }
 }

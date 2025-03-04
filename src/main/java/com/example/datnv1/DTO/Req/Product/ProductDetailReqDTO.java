@@ -14,5 +14,6 @@ public class ProductDetailReqDTO {
 
     private String name;
     private float weight;
+    private float price;
     private Set<ProductDetailBatchReqDTO> productDetailBatch = new HashSet<>();
 }

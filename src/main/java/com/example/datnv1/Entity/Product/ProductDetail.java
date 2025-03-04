@@ -1,13 +1,17 @@
 package com.example.datnv1.Entity.Product;
 
 import com.example.datnv1.Entity.BaseEntity;
+import com.example.datnv1.Entity.Orders.OrderDetail;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,19 +26,22 @@ public class ProductDetail extends BaseEntity {
     private String productDetailName;
 
     @Transient
-    private Long quantity;
+    private int quantity;
 
     @Column
-    private Float weight;
+    private float weight;
 
     @Column
-    private Float sum;
+    private float sum;
 
     @Column
-    private Float price;
+    private float price;
 
     @OneToMany(mappedBy = "productDetail")
-    private Set<ProductDetailBatch> productDetailBatches = new HashSet<ProductDetailBatch>();
+    private Set<ProductDetailBatch> productDetailBatches = new HashSet<>();
 
+    @OneToMany(mappedBy = "productDetail")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    List<OrderDetail> orderDetailList = new ArrayList<>();
 
 }
