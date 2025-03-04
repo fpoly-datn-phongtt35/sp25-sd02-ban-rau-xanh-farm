@@ -1,38 +1,85 @@
 {
-  "name" : "Rau xanh từ vườn",
-  "description" : "Rau chuẩn vị việt",
-  "price" : "12000",
-  "unitId" : 1,
-  "batchSet": [
-    {
-      "name": "Lô hàng long biên",
-      "importDate": "12/2/2024",
-      "outDate": "16/2/2024",
-      "quantity": 20000,
-      "code" : "ff7430f6-5c89-470d-813f-0a9d9eccf428"
-    },
-    {
-      "name": "Lô hàng Đông Anh",
-      "importDate" : "12/2/2024",
-      "outDate" : "16/2/2024",
-      "quantity" : 20000,
-      "code" : "f2fcfd02-7489-4c32-b431-8671162048dd"
-    }
-  ],
-  "productDetailSet" : [
-    {
-      "name" : "Túi 5kg rau xanh",
-      "weight" : "5",
-      "productDetailBatch" : [
-        {
-          "batchCode" : "ff7430f6-5c89-470d-813f-0a9d9eccf428",
-          "quatity" : 200
+  "productJson": {
+    "name" : "Rau xanh từ vườn",
+    "description" : "Rau chuẩn vị việt",
+    "price" : "12000",
+    "unitId" : 1,
+    "batchSet": [
+      {
+        "name": "Lô hàng long biên",
+        "importDate": "12/2/2024",
+        "outDate": "16/2/2024",
+        "quantity": 20000,
+        "code" : "ff7430f6-5c89-470d-813f-0a9d9eccf428"
+      },
+      {
+        "name": "Lô hàng Đông Anh",
+        "importDate" : "12/2/2024",
+        "outDate" : "16/2/2024",
+        "quantity" : 20000,
+        "code" : "f2fcfd02-7489-4c32-b431-8671162048dd"
+      }
+    ],
+    "productDetailSet" : [
+      {
+        "name" : "Túi 5kg rau xanh",
+        "weight" : "5",
+        "productDetailBatch" : [
+          {
+            "batchCode" : "ff7430f6-5c89-470d-813f-0a9d9eccf428",
+            "quantity" : 200
+          },
+          {
+            "batchCode" : "f2fcfd02-7489-4c32-b431-8671162048dd",
+            "quantity" : 200
+          }
+        ]
+      }
+    ]
+  },
+  "billJson": {
+    "customerId": 1,
+    "employeeId" : 1,
+    "voucherId" : 1,
+    "shipType" : "COD",
+    "node" : "Đây là đơn hàng",
+    "address" : "Đống Đa, Hà Nội",
+    "customerName" : "Đinh Hữu Dũng",
+    "phoneNumber" : "0386117963",
+    "dateOfReceipt" : "12:00 2024-2-2",
+    "billDetails": [
+      {
+        "productInfo": {
+          "productId": 1,
+          "quantity" : 100
         },
-        {
-          "batchCode" : "f2fcfd02-7489-4c32-b431-8671162048dd",
-          "quatity" : 200
-        }
-      ]
-    }
-  ]
+        "type" : "RETAIL",
+        "productDetails" : null,
+        "batches":[
+          {
+            "batchId" : 1,
+            "quantity" : 100
+          },
+          {
+            "batchId" : 2,
+            "quantity" : 100
+          }
+        ]
+      },
+      {
+        "productInfo":{
+          "productId": 1,
+          "quantity" : 1000
+        },
+        "type" : "PRODUCT_DETAIL",
+        "productDetails" : [
+          {
+            "productDetailBatchId": 1,
+            "quantity": 100
+          }
+        ],
+        "batches": null
+      }
+    ]
+  }
 }

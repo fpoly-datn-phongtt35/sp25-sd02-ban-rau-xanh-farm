@@ -1,5 +1,6 @@
 package com.example.datnv1.Entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public abstract class BaseEntity {
 
     @Id
@@ -26,6 +28,6 @@ public abstract class BaseEntity {
     private LocalDateTime updatedAt;
 
     @Column
-    private boolean isActive ;
+    private boolean isActive = true ;
 }
 
