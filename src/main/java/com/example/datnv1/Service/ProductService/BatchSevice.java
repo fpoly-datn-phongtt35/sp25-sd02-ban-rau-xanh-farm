@@ -33,6 +33,4 @@ public class BatchSevice {
     public List<Batch> findAvailableBatchesByProduct(Long productId){
         return batchRepo.findAvailableBatchesByProduct(productId);
     }
-
-
 }

@@ -29,8 +29,10 @@ public class ProductSevice {
     ProductRepo productRepo;
     @Autowired
     BatchSevice batchSevice;
+
     @Autowired
     UntilService untilService;
+
     @Autowired
     CategoryService categoryService;
 
